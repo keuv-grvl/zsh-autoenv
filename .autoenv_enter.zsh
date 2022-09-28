@@ -3,7 +3,7 @@
 if test -f .autoenv_conda_env_name ; then
     TARGET_CONDA_ENV="$(cat .autoenv_conda_env_name)"
     if [[ $TARGET_CONDA_ENV != $CONDA_DEFAULT_ENV ]]; then
-        conda activate "$TARGET_CONDA_ENV" 2&>1 2> /dev/null
+        conda activate "$TARGET_CONDA_ENV" 2>&1 2> /dev/null
     fi
 else
     CUR_DIR=$(basename $(pwd))
