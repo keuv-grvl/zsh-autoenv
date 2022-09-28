@@ -23,7 +23,7 @@ if [[ -z $AUTOENV_AUTH_FILE ]]; then
 fi
 
 # Name of the file to look for when entering directories.
-: ${AUTOENV_FILE_ENTER:=.autoenv.zsh}
+: ${AUTOENV_FILE_ENTER:=.autoenv_enter.zsh}
 
 # Name of the file to look for when leaving directories.
 # Requires AUTOENV_HANDLE_LEAVE=1.
@@ -41,6 +41,13 @@ fi
 
 # (Temporarily) disable zsh-autoenv. This gets looked at in the chpwd handler.
 : ${AUTOENV_DISABLED:=0}
+
+autoenv-init() {
+  ln -s ${HOME}/.opt/zsh-autoenv/.autoenv_enter.zsh .
+  ln -s ${HOME}/.opt/zsh-autoenv/.autoenv_leave.zsh .
+  echo "You may want to init a \`.autoenv_conda_env_name\` file."
+  _autoenv_chpwd_handler
+}
 
 # Public helper functions, which can be used from your .autoenv.zsh files:
 
